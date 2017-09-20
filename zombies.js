@@ -1,3 +1,4 @@
+//jshint esversion: 6
 /**
  * Class => Item(name)
  * -----------------------------
@@ -8,6 +9,11 @@
  * @property {string} name
  */
 
+class Item {
+  constructor(name) {
+    this.name = name;
+  }
+}
 
 /**
  * Class => Weapon(name, damage)
@@ -31,7 +37,12 @@
  * -----------------------------
  */
 
-
+class Weapon extends Item {
+  constructor(name, damage) {
+    super(name);
+    this.damage = 10;
+  }
+}
 
 /**
  * Class => Food(name, energy)
@@ -49,6 +60,12 @@
  * @property {number} energy
  */
 
+class Food extends Item {
+  constructor(name, energy) {
+    super(name);
+    this.energy = energy;
+  }
+}
 
 /**
  * Food Extends Item Class
@@ -79,8 +96,24 @@
  * @property {method} getMaxHealth         Returns private variable `maxHealth`.
  */
 
-
-/**
+class Player extends Item {
+  constructor(name, health, strength, speed) {
+    super(name);
+    this._pack = [];
+    this._maxHealth = 100;
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this.isAlive = true;
+    this.equipped = false;
+  }
+  getPack() {
+    return this._pack;
+  }
+  getMaxHealth() {
+    return this._maxHealth;
+  }
+  /**
  * Player Class Method => checkPack()
  * -----------------------------
  * Player checks the contents of their pack.
@@ -91,9 +124,10 @@
  *
  * @name checkPack
  */
-
-
-/**
+ checkPack() {
+  console.log(this._pack);
+ }
+ /**
  * Player Class Method => takeItem(item)
  * -----------------------------
  * Player takes an item from the world and places it into their pack.
@@ -110,6 +144,12 @@
  * @param {Item/Weapon/Food} item   The item to take.
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
+ takeItem(item) {
+
+ }
+}
+
+
 
 
 /**
