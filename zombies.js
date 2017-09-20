@@ -43,7 +43,6 @@ class Weapon extends Item {
     this.damage = 10;
   }
 }
-
 /**
  * Class => Food(name, energy)
  * -----------------------------
@@ -100,7 +99,8 @@ class Player extends Item {
   constructor(name, health, strength, speed) {
     super(name);
     this._pack = [];
-    this._maxHealth = 100;
+    this._maxHealth = health;
+    this.name = name;
     this.health = health;
     this.strength = strength;
     this.speed = speed;
@@ -145,13 +145,16 @@ class Player extends Item {
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
  takeItem(item) {
-
+  let packContent = this._pack;
+  if (packContent.length > 2 && !packContent.includes(item)) {
+    console.log('Pack full');
+    return false;
+  }else{
+    this._pack.push(item);
+    console.log(this.name + ' added ' + item + ' successfully');
+    return true;
+  }
  }
-}
-
-
-
-
 /**
  * Player Class Method => discardItem(item)
  * -----------------------------
@@ -177,8 +180,19 @@ class Player extends Item {
  * @param {Item/Weapon/Food} item   The item to discard.
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
+discardItem(item) {
+  let checkContent = this._pack.indexOf(item);
 
+if (checkContent !== -1) {
+  this._pack.splice(item, 1);
+  console.log(this.name + ' discarded ' + item  + ' successfully');
+  return true;
+}else{
+  console.log(item + ' not found. Nothing discarded.');
+  return false;
+}
 
+ }
 /**
  * Player Class Method => equip(itemToEquip)
  * -----------------------------
@@ -198,8 +212,9 @@ class Player extends Item {
  * @name equip
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
+equip(itemToEquip) {
 
-
+}
 /**
  * Player Class Method => eat(itemToEat)
  * -----------------------------
@@ -218,8 +233,9 @@ class Player extends Item {
  * @name eat
  * @param {Food} itemToEat  The food item to eat.
  */
+eat(itemToEat) {
 
-
+}
 /**
  * Player Class Method => useItem(item)
  * -----------------------------
@@ -232,8 +248,9 @@ class Player extends Item {
  * @name useItem
  * @param {Item/Weapon/Food} item   The item to use.
  */
+useItem() {
 
-
+}
 /**
  * Player Class Method => equippedWith()
  * -----------------------------
@@ -247,6 +264,13 @@ class Player extends Item {
  * @name equippedWith
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
+equippedWith(){
+
+}
+
+}
+
+
 
 
 /**
@@ -264,7 +288,15 @@ class Player extends Item {
  * @property {number} speed
  * @property {boolean} isAlive      Default value should be `true`.
  */
-
+class Zombie {
+  constructor(health, strength, speed){
+    this._maxHealth = health;
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this.isAlive = true;
+  }
+}
 
 /**
  * Class => FastZombie(health, strength, speed)
