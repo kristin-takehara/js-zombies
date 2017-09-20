@@ -151,7 +151,7 @@ class Player extends Item {
     return false;
   }else{
     this._pack.push(item);
-    console.log(this.name + ' added ' + item + ' successfully');
+    console.log(this.name + ' added ' + item.name + ' successfully');
     return true;
   }
  }
@@ -183,16 +183,15 @@ class Player extends Item {
 discardItem(item) {
   let checkContent = this._pack.indexOf(item);
 
-if (checkContent !== -1) {
-  this._pack.splice(item, 1);
-  console.log(this.name + ' discarded ' + item  + ' successfully');
+  if (checkContent !== -1) {
+    this._pack.splice(checkContent, 1);
+  console.log(this.name + ' discarded ' + item.name  + ' successfully');
   return true;
-}else{
+  }else{
   console.log(item + ' not found. Nothing discarded.');
   return false;
+  }
 }
-
- }
 /**
  * Player Class Method => equip(itemToEquip)
  * -----------------------------
@@ -213,7 +212,7 @@ if (checkContent !== -1) {
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
 equip(itemToEquip) {
-
+  let checkWeapon = this._pack.indexOf(itemToEquip);
 }
 /**
  * Player Class Method => eat(itemToEat)
@@ -269,9 +268,6 @@ equippedWith(){
 }
 
 }
-
-
-
 
 /**
  * Class => Zombie(health, strength, speed)
