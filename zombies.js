@@ -146,11 +146,11 @@ class Player extends Item {
  */
  takeItem(item) {
   let packContent = this._pack;
-  if (packContent.length > 2 && !packContent.includes(item)) {
+  if (packContent.length >= 3 && !packContent.includes(item)) {
     console.log('Pack full');
     return false;
   }else{
-    this._pack.push(item);
+    packContent.push(item);
     console.log(this.name + ' added ' + item.name + ' successfully');
     return true;
   }
@@ -211,9 +211,22 @@ discardItem(item) {
  * @name equip
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
-equip(itemToEquip) {
-  let checkWeapon = this._pack.indexOf(itemToEquip);
+////////////////////STUDY THIS///////////////////////////
+equip(weapon) {
+  let itemIndex = this._pack.indexOf(weapon);
+  let equipped = this.equipped;
+  let _pack = this._pack;
+  if (!equipped && _pack.includes(weapon) && weapon instanceof Weapon) {
+    this.equipped = weapon;
+    this._pack.splice(itemIndex, 1);
+  }else if (equipped && _pack.includes(weapon)) {
+    let tempItem = equipped;
+    this.equipped = weapon;
+    this._pack.splice(itemIndex, 1);
+    this._pack.push(tempItem);
+  }
 }
+
 /**
  * Player Class Method => eat(itemToEat)
  * -----------------------------
@@ -232,7 +245,7 @@ equip(itemToEquip) {
  * @name eat
  * @param {Food} itemToEat  The food item to eat.
  */
-eat(itemToEat) {
+eat(food) {
 
 }
 /**
