@@ -40,7 +40,7 @@ class Item {
 class Weapon extends Item {
   constructor(name, damage) {
     super(name);
-    this.damage = 10;
+    this.damage = damage;
   }
 }
 /**
@@ -246,7 +246,16 @@ equip(weapon) {
  * @param {Food} itemToEat  The food item to eat.
  */
 eat(food) {
+  let energyCt = food.energy;
 
+  if (this._pack.includes(food) && food instanceof Food) {
+    this._pack.splice(this._pack.indexOf(food, 1));
+    this.health = this.health + this.energyCt;
+
+  if (this.health > this.getMaxHealth()) {
+    this.health = this._maxHealth;
+  }
+  }
 }
 /**
  * Player Class Method => useItem(item)
@@ -260,8 +269,12 @@ eat(food) {
  * @name useItem
  * @param {Item/Weapon/Food} item   The item to use.
  */
-useItem() {
-
+useItem(item) {
+  if (item instanceof Food) {
+    this.eat(item);
+  }else if (item instanceof Weapon) {
+    this.equip(item);
+  }
 }
 /**
  * Player Class Method => equippedWith()
@@ -277,7 +290,13 @@ useItem() {
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
 equippedWith(){
-
+  if (this.equipped !== false) {
+    console.log(this.name + " you are equipped with " + this.equipped.name);
+    return this.equipped.name;
+  }else{
+    console.log("You have no weapons.");
+    return false;
+  }
 }
 
 }
