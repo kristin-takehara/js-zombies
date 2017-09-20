@@ -302,6 +302,9 @@ class Zombie {
  * Class => FastZombie(health, strength, speed)
  * -----------------------------
  * Creates a fast zombie.
+ /**
+ * FastZombie Extends Zombie Class
+ * -----------------------------
  *
  * The FastZombie class constructor will call
  *   the super class (Zombie) constructor
@@ -312,19 +315,21 @@ class Zombie {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
-
-/**
- * FastZombie Extends Zombie Class
- * -----------------------------
- */
-
-
-
+class FastZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed);
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+  }
+}
 /**
  * Class => StrongZombie(health, strength, speed)
  * -----------------------------
  * Creates a strong zombie.
+ /**
+ * StrongZombie Extends Zombie Class
+ * -----------------------------
  *
  * The StrongZombie class constructor will call
  *   the super class (Zombie) constructor
@@ -335,19 +340,21 @@ class Zombie {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
-
-/**
- * StrongZombie Extends Zombie Class
- * -----------------------------
- */
-
-
-
+class StrongZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed);
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+  }
+}
 /**
  * Class => RangedZombie(health, strength, speed)
  * -----------------------------
  * Creates a ranged zombie.
+ /**
+ * RangedZombie Extends Zombie Class
+ * -----------------------------
  *
  * The RangedZombie class constructor will call
  *   the super class (Zombie) constructor
@@ -358,20 +365,21 @@ class Zombie {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
-
-/**
- * RangedZombie Extends Zombie Class
- * -----------------------------
- */
-
-
-
+class RangedZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed);
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+  }
+}
 /**
  * Class => ExplodingZombie(health, strength, speed)
  * -----------------------------
  * Creates an exploding zombie.
- *
+ /**
+ * ExplodingZombie Extends Zombie Class
+ * -----------------------------
  * The ExplodingZombie class constructor will call
  *   the super class (Zombie) constructor
  *   while passing in the 3 Zombie constructor params
@@ -381,16 +389,14 @@ class Zombie {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
-
-/**
- * ExplodingZombie Extends Zombie Class
- * -----------------------------
- */
-
-
-
-
+class ExplodingZombie extends Zombie {
+  constructor(health, strength, speed) {
+    super(health, strength, speed);
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+  }
+}
 /**
  * Sample run.
  * Feel free to edit this and check your game logic.
