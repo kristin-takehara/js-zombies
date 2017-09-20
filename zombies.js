@@ -245,12 +245,13 @@ equip(weapon) {
  * @name eat
  * @param {Food} itemToEat  The food item to eat.
  */
+////////////////////////////STUDY THIS/////////////////////////
 eat(food) {
   let energyCt = food.energy;
 
   if (this._pack.includes(food) && food instanceof Food) {
-    this._pack.splice(this._pack.indexOf(food, 1));
-    this.health = this.health + this.energyCt;
+    this._pack.splice(this._pack.indexOf(food), 1);
+    this.health = this.health + energyCt;
 
   if (this.health > this.getMaxHealth()) {
     this.health = this._maxHealth;
