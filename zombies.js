@@ -136,13 +136,13 @@ Player.prototype.checkPack = function checkPack() {
 Player.prototype.takeItem = function takeItem(item) {
   var packContent = this._pack;
 
-  if(packContent.length >= 3 && !packContent.includes(item)) {
+  if(packContent.length >= 3 && !packContent.includes(item)) { //if there are more than 3 items (array length >= 3) -AND- therefore the pack canNOT include another item
     console.log('Pack full.' + item.name + ' cannot be stored.');
-    return false;
+    return false; //return false
   }else{
-    packContent.push(item);
+    packContent.push(item); //else, add item to packContent
     console.log(this.name + ' added ' + item.name + ' successfully.');
-    return true;
+    return true; //return true
   }
 };
 
@@ -173,8 +173,17 @@ Player.prototype.takeItem = function takeItem(item) {
  */
 
 Player.prototype.discardItem = function discardItem(item) {
+  var checkContent = this._pack.indexOf(item);
 
-};
+  if(checkContent !== -1) { //if item is in the pack
+    this._pack.splice(checkContent, 1); //remove the item from the pack using splice method
+      console.log(this.name + ' discarded ' + item.name + ' successfully.');
+      return true; //return true for successful discard
+    }else{
+      console.log(item.name + ' not found. Nothing to discard.'); //message for item not in pack
+      return false; //return false if item not found in pack
+    }
+  };
 /**
  * Player Class Method => equip(itemToEquip)
  * -----------------------------
@@ -195,6 +204,21 @@ Player.prototype.discardItem = function discardItem(item) {
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
 
+Player.prototype.equip = function equip(weapon) {
+  // // var weaponIndex = this._pack.indexOf(weapon);
+  // // var equipped = this.equipped;
+  // // var _pack = this._pack;
+
+  // // if (!equipped && _pack.includes(weapon) && weapon instanceOf Weapon) {
+  // //   this.equipped = weapon;
+  // //   this._pack.splice(weaponIndex, 1);
+  // // }else if (equipped && _pack.includes(weapon)) {
+  // //   var tempItem = equipped;
+  // //   this.equipped = weapon;
+  // //   this._pack.splice(weaponIndex);
+  // //   this._pack.push(tempItem);
+  // }
+};
 
 /**
  * Player Class Method => eat(itemToEat)
@@ -215,6 +239,9 @@ Player.prototype.discardItem = function discardItem(item) {
  * @param {Food} itemToEat  The food item to eat.
  */
 
+Player.prototype.eat = function eat(food) {
+
+};
 
 /**
  * Player Class Method => useItem(item)
@@ -229,6 +256,9 @@ Player.prototype.discardItem = function discardItem(item) {
  * @param {Item/Weapon/Food} item   The item to use.
  */
 
+Player.prototype.useItem = function useItem(item){
+
+};
 
 /**
  * Player Class Method => equippedWith()
@@ -243,9 +273,9 @@ Player.prototype.discardItem = function discardItem(item) {
  * @name equippedWith
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
+Player.prototype.equippedWith = function equippedWith() {
 
-
-
+};
 
 } //<<<---this closes the Player class
 
