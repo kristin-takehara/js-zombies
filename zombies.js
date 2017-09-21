@@ -95,10 +95,10 @@ var Player = function(name, health, strength, speed) {
   this.speed = speed;
   this.isAlive = true;
   this.equipped = false;
-  Player.prototype.getPack = function getPack() {
+  Player.prototype.getPack = function() {
     return this._pack;
   };
-  Player.prototype.getMaxHealth = function getMaxHealth() {
+  Player.prototype.getMaxHealth = function() {
     return this._maxHealth;
   };
 
@@ -113,7 +113,7 @@ var Player = function(name, health, strength, speed) {
  *
  * @name checkPack
  */
-Player.prototype.checkPack = function checkPack() {
+Player.prototype.checkPack = function() {
   console.log(this.getPack());
   return this.getPack();
 };
@@ -238,15 +238,15 @@ Player.prototype.equip = function(item){
  */
 
 Player.prototype.eat = function(food) {
-  if (item instanceof Food && this.checkPack().indexOf(item) >= 0){
-    if (this.health + item.energy > this.getMaxHealth()){
-      this.health = this.getMaxHealth();
-      this._pack.splice(this._pack.indexOf(item), 1);
-    }else{
-      this.health += item.energy;
-      this._pack.splice(this._pack.indexOf(item), 1);
-    }
-  }
+  // if (item instanceof Food && this.checkPack().indexOf(item) >= 0){
+  //   if (this.health + item.energy > this.getMaxHealth()){
+  //     this.health = this.getMaxHealth();
+  //     this._pack.splice(this._pack.indexOf(item), 1);
+  //   if {
+  //     this.health += item.energy;
+  //     this._pack.splice(this._pack.indexOf(item), 1);
+  //   }
+  // }
 };
 
 /**
@@ -284,8 +284,8 @@ Player.prototype.equippedWith = function equippedWith() {
 };
 
 } //<<<---this closes the Player class
-Player.prototype = Object.create(Item.prototype);
-Player.prototype.constructor = Player;
+// Player.prototype = Object.create(Item.prototype);
+// Player.prototype.constructor = Player;
 
 /**
  * Class => Zombie(health, strength, speed)
