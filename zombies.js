@@ -95,9 +95,12 @@ function Player(name, health, strength, speed) {
   this.speed = speed;
   this.isAlive = true;
   this.equipped = false;
-  this.getPack = this._pack;
-  this.getMaxHealth = this._maxHealth;
-}
+  Player.prototype.getPack = function getPack() {
+    return this._pack;
+  };
+  Player.prototype.getMaxHealth = function getMaxHealth() {
+    return this._maxHealth;
+  };
 
 /**
  * Player Class Method => checkPack()
@@ -110,9 +113,9 @@ function Player(name, health, strength, speed) {
  *
  * @name checkPack
  */
-
-
-
+Player.prototype.checkPack = function checkPack() {
+  console.log(checkPack);
+};
 /**
  * Player Class Method => takeItem(item)
  * -----------------------------
@@ -130,7 +133,18 @@ function Player(name, health, strength, speed) {
  * @param {Item/Weapon/Food} item   The item to take.
  * @return {boolean} true/false     Whether player was able to store item in pack.
  */
+Player.prototype.takeItem = function takeItem(item) {
+  var packContent = this._pack;
 
+  if(packContent.length >= 3 && !packContent.includes(item)) {
+    console.log('Pack full.' + item.name + ' cannot be stored.');
+    return false;
+  }else{
+    packContent.push(item);
+    console.log(this.name + ' added ' + item.name + ' successfully.');
+    return true;
+  }
+};
 
 /**
  * Player Class Method => discardItem(item)
@@ -158,7 +172,9 @@ function Player(name, health, strength, speed) {
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
 
+Player.prototype.discardItem = function discardItem(item) {
 
+};
 /**
  * Player Class Method => equip(itemToEquip)
  * -----------------------------
@@ -229,6 +245,11 @@ function Player(name, health, strength, speed) {
  */
 
 
+
+
+} //<<<---this closes the Player class
+
+
 /**
  * Class => Zombie(health, strength, speed)
  * -----------------------------
@@ -245,6 +266,14 @@ function Player(name, health, strength, speed) {
  * @property {boolean} isAlive      Default value should be `true`.
  */
 
+function Zombie(health, strength, speed) {
+  this._maxHealth = health;
+  this.name = name;
+  this.health = health;
+  this.strength = strength;
+  this.speed = speed;
+  this.isAlive = true;
+}
 
 /**
  * Class => FastZombie(health, strength, speed)
@@ -260,14 +289,15 @@ function Player(name, health, strength, speed) {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
+function FastZombie(health, strength, speed) {
+  Zombie.call(this, health, strength, speed);
+}
 
 /**
  * FastZombie Extends Zombie Class
  * -----------------------------
  */
-
-
+FastZombie.prototype = Object.create(Zombie.prototype);
 
 /**
  * Class => StrongZombie(health, strength, speed)
@@ -283,14 +313,16 @@ function Player(name, health, strength, speed) {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
+function StrongZombie(health, strength, speed) {
+  Zombie.call(this, health, strength, speed);
+}
 
 /**
  * StrongZombie Extends Zombie Class
  * -----------------------------
  */
 
-
+StrongZombie.prototype = Object.create(Zombie.prototype);
 
 /**
  * Class => RangedZombie(health, strength, speed)
@@ -306,14 +338,16 @@ function Player(name, health, strength, speed) {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
+function RangedZombie(health, strength, speed) {
+  Zombie.call(this, health, strength, speed);
+}
 
 /**
  * RangedZombie Extends Zombie Class
  * -----------------------------
  */
 
-
+RangedZombie.prototype = Object.create(Zombie.prototype);
 
 /**
  * Class => ExplodingZombie(health, strength, speed)
@@ -329,15 +363,16 @@ function Player(name, health, strength, speed) {
  * @param {number} strength         The zombie's strength.
  * @param {number} speed            The zombie's speed.
  */
-
+function ExplodingZombie(health, strength, speed) {
+  Zombie.call(this, health, strength, speed);
+}
 
 /**
  * ExplodingZombie Extends Zombie Class
  * -----------------------------
  */
 
-
-
+ExplodingZombie.prototype = Object.create(Zombie.prototype);
 
 /**
  * Sample run.
